@@ -18,7 +18,8 @@ create table Responsable (
   Nombre nvarchar(Max),
   ApellidoPaterno nvarchar(max),
   ApellidoMaterno nvarchar(max),
-  Celular int
+  Celular int,
+  Contraseña nvarchar (max) not null
 )
 create table Control (
   NumControl int primary key,
