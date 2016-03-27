@@ -75,6 +75,17 @@ create table Leccion (
   CantMujer int,
   FechaReg date default getdate()
 )
+create table Blacklist (
+  NumBlacklist int primary key,
+  CodResponsable char (10) foreign key references Responsable (CodResponsable) not null,
+  CodGrupo char(10) foreign key references Grupo (CodGrupo) null,
+  Nombres nvarchar (max),
+  Causa nvarchar (max),
+  Sanción date not null,
+  Bloque int not null,
+  Vigente bit default 1 not null,
+  FechaReg date default getdate()
+)
 /*----------------------------------------------------------------------------*/
 -- Registros
 insert into Maquina
