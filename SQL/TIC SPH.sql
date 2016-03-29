@@ -87,8 +87,17 @@ create table Blacklist (
   Vigente bit default 1 not null,
   FechaReg date default getdate()
 )
+<<<<<<< HEAD
 // Cambio Forest
 // Cambio en Master Linea 1
 // Cambio en Master Linea 2
 // Cambio en Master Linea 3
 // Cambio en Master Linea 4
+=======
+// Cambio Secundario
+// Linea 1 Secundario
+// Linea 2 Secundario
+// Linea 3 Secundario
+// Linea 4 Secundario
+// Linea 5 Secundario
+>>>>>>> secundario
