@@ -87,3 +87,4 @@ create table Blacklist (
   Vigente bit default 1 not null,
   FechaReg date default getdate()
 )
+// Cambio Secundario
