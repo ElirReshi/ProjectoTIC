@@ -115,67 +115,67 @@ select * from Calendario
 /*----------------------------------------------*/
 -- Apartado
 -- Semana 1
-execute insert_apartado 1, 1, 'M', 'Julieta', '7C', 1, 'doble';
-execute insert_apartado 2, 1, 'M', 'Diego', '11A', 3, 'doble';
-execute insert_apartado 3, 1, 'M', 'Sander', '7B', 6, 'doble';
+execute insert_apartado 1, 1, 'Julieta', '7C', 1, 'doble';
+execute insert_apartado 2, 1, 'Diego', '11A', 3, 'doble';
+execute insert_apartado 3, 1, 'Sander', '7B', 6, 'doble';
 /*----------------------------------------------*/
-execute insert_apartado 4, 2, 'M', 'Diego', '7B', 1, 'doble';
-execute insert_apartado 5, 2, 'M', 'Benigno', '10B', 3, 'doble';
-execute insert_apartado 6, 2, 'M', 'Elena', '9A', 6, 'doble';
+execute insert_apartado 4, 2, 'Diego', '7B', 1, 'doble';
+execute insert_apartado 5, 2, 'Benigno', '10B', 3, 'doble';
+execute insert_apartado 6, 2, 'Elena', '9A', 6, 'doble';
 /*----------------------------------------------*/
-execute insert_apartado 7, 3, 'M', 'Julieta', '7C', 1, 'doble';
-execute insert_apartado 8, 3, 'M', 'William', '11A', 3, 'doble';
-execute insert_apartado 9, 3, 'M', 'Julieta', '7A', 6, 'doble';
+execute insert_apartado 7, 3, 'Julieta', '7C', 1, 'doble';
+execute insert_apartado 8, 3, 'William', '11A', 3, 'doble';
+execute insert_apartado 9, 3, 'Julieta', '7A', 6, 'doble';
 /*----------------------------------------------*/
-execute insert_apartado 10, 4, 'M', 'Benigno', '10B', 1, 'doble';
-execute insert_apartado 11, 4, 'M', 'Elena', '8A', 3, 'doble';
-execute insert_apartado 12, 4, 'M', 'William', '10A', 6, 'doble';
+execute insert_apartado 10, 4, 'Benigno', '10B', 1, 'doble';
+execute insert_apartado 11, 4, 'Elena', '8A', 3, 'doble';
+execute insert_apartado 12, 4, 'William', '10A', 6, 'doble';
 /*----------------------------------------------*/
-execute insert_apartado 13, 5, 'M', 'Julieta', '7A', 1, 'doble';
-execute insert_apartado 14, 5, 'M', 'Marvin', '7B', 3, 'doble';
-execute insert_apartado 15, 5, 'M', 'Carranza', '10B', 6, 'doble';
+execute insert_apartado 13, 5, 'Julieta', '7A', 1, 'doble';
+execute insert_apartado 14, 5, 'Marvin', '7B', 3, 'doble';
+execute insert_apartado 15, 5, 'Carranza', '10B', 6, 'doble';
 /*----------------------------------------------*/
 -- Semana 2
-execute insert_apartado 16, 6, 'M', 'Julieta', '7C', 1, 'doble';
-execute insert_apartado 17, 6, 'M', 'Diego', '11A', 3, 'doble';
-execute insert_apartado 18, 6, 'M', 'Sander', '7B', 6, 'doble';
+execute insert_apartado 16, 6, 'Julieta', '7C', 1, 'doble';
+execute insert_apartado 17, 6, 'Diego', '11A', 3, 'doble';
+execute insert_apartado 18, 6, 'Sander', '7B', 6, 'doble';
 /*----------------------------------------------*/
-execute insert_apartado 19, 7, 'M', 'Diego', '7B', 1, 'doble';
-execute insert_apartado 20, 7, 'M', 'Diego', '11A', 3, 'doble';
-execute insert_apartado 21, 7, 'M', 'Elena', '9A', 6, 'doble';
+execute insert_apartado 19, 7, 'Diego', '7B', 1, 'doble';
+execute insert_apartado 20, 7, 'Diego', '11A', 3, 'doble';
+execute insert_apartado 21, 7, 'Elena', '9A', 6, 'doble';
 /*----------------------------------------------*/
-execute insert_apartado 22, 8, 'M', 'Elena', '9A', 1, 'doble';
-execute insert_apartado 23, 8, 'M', 'Elena', '10A', 3, 'doble';
-execute insert_apartado 24, 8, 'M', 'Elena', '8A', 6, 'doble';
+execute insert_apartado 22, 8, 'Elena', '9A', 1, 'doble';
+execute insert_apartado 23, 8, 'Elena', '10A', 3, 'doble';
+execute insert_apartado 24, 8, 'Elena', '8A', 6, 'doble';
 /*----------------------------------------------*/
-execute insert_apartado 25, 9, 'M', 'Julieta', '7B', 1, 'doble';
-execute insert_apartado 26, 9, 'M', 'Marvin', '11A', 3, 'doble';
-execute insert_apartado 27, 9, 'M', 'Julieta', '8A', 6, 'doble';
+execute insert_apartado 25, 9, 'Julieta', '7B', 1, 'doble';
+execute insert_apartado 26, 9, 'Marvin', '11A', 3, 'doble';
+execute insert_apartado 27, 9, 'Julieta', '8A', 6, 'doble';
 /*----------------------------------------------*/
-execute insert_apartado 28, 10, 'M', 'Bonilla', '10B', 1, 'doble';
-execute insert_apartado 29, 10, 'M', 'Bonilla', '10A', 3, 'doble';
-execute insert_apartado 30, 10, 'M', 'Bonilla', '11A', 6, 'doble';
+execute insert_apartado 28, 10, 'Bonilla', '10B', 1, 'doble';
+execute insert_apartado 29, 10, 'Bonilla', '10A', 3, 'doble';
+execute insert_apartado 30, 10, 'Bonilla', '11A', 6, 'doble';
 /*----------------------------------------------*/
 -- Semana 3
-execute insert_apartado 31, 11, 'M', 'Julieta', '7C', 1, 'doble';
-execute insert_apartado 32, 11, 'M', 'William', '10B', 3, 'doble';
-execute insert_apartado 33, 11, 'M', 'Sander', '7B', 6, 'doble';
+execute insert_apartado 31, 11, 'Julieta', '7C', 1, 'doble';
+execute insert_apartado 32, 11, 'William', '10B', 3, 'doble';
+execute insert_apartado 33, 11, 'Sander', '7B', 6, 'doble';
 /*----------------------------------------------*/
-execute insert_apartado 34, 12, 'M', 'Bonilla', '9A', 1, 'doble';
-execute insert_apartado 35, 12, 'M', 'Benigno', '10B', 3, 'doble';
-execute insert_apartado 36, 12, 'M', 'Carranza', '11A', 6, 'doble';
+execute insert_apartado 34, 12, 'Bonilla', '9A', 1, 'doble';
+execute insert_apartado 35, 12, 'Benigno', '10B', 3, 'doble';
+execute insert_apartado 36, 12, 'Carranza', '11A', 6, 'doble';
 /*----------------------------------------------*/
-execute insert_apartado 37, 13, 'M', 'Elena', '9A', 1, 'doble';
-execute insert_apartado 38, 13, 'M', 'William', '11A', 3, 'doble';
-execute insert_apartado 39, 13, 'M', 'Bertha', '7B', 6, 'doble';
+execute insert_apartado 37, 13, 'Elena', '9A', 1, 'doble';
+execute insert_apartado 38, 13, 'William', '11A', 3, 'doble';
+execute insert_apartado 39, 13, 'Bertha', '7B', 6, 'doble';
 /*----------------------------------------------*/
-execute insert_apartado 40, 14, 'M', 'Diego', '9B', 1, 'doble';
-execute insert_apartado 41, 14, 'M', 'Elena', '8A', 3, 'doble';
-execute insert_apartado 42, 14, 'M', 'Julieta', '8A', 6, 'doble';
+execute insert_apartado 40, 14, 'Diego', '9B', 1, 'doble';
+execute insert_apartado 41, 14, 'Elena', '8A', 3, 'doble';
+execute insert_apartado 42, 14, 'Julieta', '8A', 6, 'doble';
 /*----------------------------------------------*/
-execute insert_apartado 43, 15, 'M', 'Carranza', '9A', 1, 'doble';
-execute insert_apartado 44, 15, 'M', 'Carranza', '9B', 3, 'doble';
-execute insert_apartado 45, 15, 'M', 'Carranza', '10B', 6, 'doble';
+execute insert_apartado 43, 15, 'Carranza', '9A', 1, 'doble';
+execute insert_apartado 44, 15, 'Carranza', '9B', 3, 'doble';
+execute insert_apartado 45, 15, 'Carranza', '10B', 6, 'doble';
 /*----------------------------------------------*/
 select * from Apartado
 /*----------------------------------------------*/
