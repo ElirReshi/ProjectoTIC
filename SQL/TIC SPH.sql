@@ -32,6 +32,7 @@ create table Docente (
 )
 create table Responsable (
   CodResponsable char(10) primary key,
+  CodTurno char(1) foreign key references Turno (CodTurno) not null,
   Cedula nvarchar(16) unique,
   Nombre nvarchar(Max),
   Apellido nvarchar(max),
@@ -49,15 +50,20 @@ create table Maquina (
 /*----------------------------------------------*/
 -- Tablas Dependientes
 create table Blacklist (
-  NumBlacklist int identity(1, 1) primary key,
+  NumBlacklist int primary key,
   CodResponsable char(10) foreign key references Responsable (CodResponsable) not null,
-  CodGrupo char(5) foreign key references Grupo (CodGrupo) null,
-  Nombres nvarchar(max),
   Causa nvarchar(max),
   Sanción date not null,
   Bloque int not null,
   Vigente bit default 1 not null,
   FechaReg date default getdate()
+)
+create table DetalleBlacklist (
+  IdDetalleBlacklist int identity(1, 1) primary key,
+  NumBlacklist int foreign key references Blacklist (NumBlacklist) not null,
+  CodGrupo char(5) foreign key references Grupo (CodGrupo) not null,
+  Nombre nvarchar(max),
+  Apellido nvarchar(max)
 )
 /*----------------------------------------------*/
 -- Turno
@@ -102,7 +108,7 @@ create procedure delete_turno
   begin
     delete
       from Turno
-      WHERE CodTurno = @CodTurno
+      where CodTurno = @CodTurno
   end;
 
 /*----------------------------------------------*/
@@ -142,7 +148,7 @@ create procedure delete_grupo
   begin
     delete
       from Grupo
-      WHERE CodGrupo = @CodGrupo
+      where CodGrupo = @CodGrupo
   end;
 
 /*----------------------------------------------*/
@@ -182,7 +188,7 @@ create procedure delete_asignatura
   begin
     delete
       from Asignatura
-      WHERE CodAsignatura = @CodAsignatura
+      where CodAsignatura = @CodAsignatura
   end;
 
 /*----------------------------------------------*/
@@ -231,7 +237,7 @@ create procedure delete_docente
   begin
     delete
       from Docente
-      WHERE CodDocente = @CodDocente
+      where CodDocente = @CodDocente
   end;
 
 /*----------------------------------------------*/
@@ -241,14 +247,15 @@ if (OBJECT_ID('insert_responsable') is not null)
  GO
 create procedure insert_responsable
   @CodResponsable char(10),
+  @CodTurno char(1),
   @Cedula nvarchar(16),
   @Nombre nvarchar(Max),
   @Apellido nvarchar(max),
   @Celular int
   as
   begin
-    insert into Responsable (CodResponsable, Cedula, Nombre, Apellido, Celular)
-    values (@CodResponsable, @Cedula, @Nombre, @Apellido, @Celular)
+    insert into Responsable (CodResponsable, CodTurno, Cedula, Nombre, Apellido, Celular)
+    values (@CodResponsable, @CodTurno, @Cedula, @Nombre, @Apellido, @Celular)
   end;
 
 if (OBJECT_ID('update_responsable') is not null)
@@ -256,6 +263,7 @@ if (OBJECT_ID('update_responsable') is not null)
  GO
 create procedure update_responsable
   @CodResponsable char(10),
+  @CodTurno char(1),
   @Cedula nvarchar(16),
   @Nombre nvarchar(Max),
   @Apellido nvarchar(max),
@@ -264,6 +272,7 @@ create procedure update_responsable
   begin
     update Responsable
     set
+      CodTurno = @CodTurno,
       Cedula = @Cedula,
       Nombre = @Nombre,
       Apellido = @Apellido,
@@ -280,7 +289,7 @@ create procedure delete_responsable
   begin
     delete
       from Responsable
-      WHERE CodResponsable = @CodResponsable
+      where CodResponsable = @CodResponsable
   end;
 /*----------------------------------------------*/
 -- Maquina
@@ -334,7 +343,7 @@ create procedure delete_maquina
   begin
     delete
       from Maquina
-      WHERE NumMaquina = @NumMaquina
+      where NumMaquina = @NumMaquina
   end;
 /*----------------------------------------------*/
 -- Blacklist
@@ -342,27 +351,15 @@ if (OBJECT_ID('insert_blacklist') is not null)
   drop procedure insert_blacklist
  GO
 create procedure insert_blacklist
+  @NumBlacklist int,
   @CodResponsable char(10),
-  @CodGrupo char(5) null,
-  @Nombres nvarchar(max),
   @Causa nvarchar(max),
   @Sanción date,
   @Bloque int
   as
   begin
-    insert into Blacklist (CodResponsable, CodGrupo, Nombres, Causa, Sanción, Bloque)
-    values (@CodResponsable, @CodGrupo, @Nombres, @Causa, @Sanción, @Bloque);
-    declare @NumBlacklist int;
-    set @NumBlacklist = SCOPE_IDENTITY();
-    select
-      CodResponsable = @CodResponsable,
-      CodGrupo = @CodGrupo,
-      Nombres = @Nombres,
-      Causa = @Causa,
-      Sanción = @Sanción,
-      Bloque = @Bloque
-    from Blacklist
-    where NumBlacklist = @NumBlacklist;
+    insert into Blacklist (NumBlacklist, CodResponsable, Causa, Sanción, Bloque)
+    values (@NumBlacklist, @CodResponsable, @Causa, @Sanción, @Bloque);
   end;
 
 if (OBJECT_ID('update_blacklist') is not null)
@@ -371,8 +368,6 @@ if (OBJECT_ID('update_blacklist') is not null)
 create procedure update_blacklist
   @NumBlacklist int,
   @CodResponsable char(10),
-  @CodGrupo char(5) null,
-  @Nombres nvarchar(max),
   @Causa nvarchar(max),
   @Sanción date,
   @Bloque int
@@ -381,8 +376,6 @@ create procedure update_blacklist
     update Blacklist
     set
       CodResponsable = @CodResponsable,
-      CodGrupo = @CodGrupo,
-      Nombres = @Nombres,
       Causa = @Causa,
       Sanción = @Sanción,
       Bloque = @Bloque
@@ -396,7 +389,53 @@ create procedure delete_blacklist
   @NumBlacklist int
   as
   begin
+    update Blacklist
+    set
+      Vigente = 0
+    where NumBlacklist = @NumBlacklist
+  end;
+/*----------------------------------------------*/
+-- DetalleBlacklist
+if (OBJECT_ID('insert_detalleblacklist') is not null)
+  drop procedure insert_detalleblacklist
+ GO
+create procedure insert_detalleblacklist
+  @NumBlacklist int,
+  @CodGrupo char(5),
+  @Nombre nvarchar(max),
+  @Apellido nvarchar(max)
+  as
+  begin
+    insert into DetalleBlacklist (NumBlacklist, CodGrupo, Nombre, Apellido)
+    values (@NumBlacklist, @CodGrupo, @Nombre, @Apellido);
+  end;
+
+if (OBJECT_ID('update_detalleblacklist') is not null)
+  drop procedure update_detalleblacklist
+ GO
+create procedure update_detalleblacklist
+  @IdDetalleBlacklist int,
+  @CodGrupo char(5),
+  @Nombre nvarchar(max),
+  @Apellido nvarchar(max)
+  as
+  begin
+    update DetalleBlacklist
+    set
+      CodGrupo = @CodGrupo,
+      Nombre = @Nombre,
+      Apellido = @Apellido
+    where IdDetalleBlacklist = @IdDetalleBlacklist
+  end;
+
+if (OBJECT_ID('delete_detalleblacklist') is not null)
+  drop procedure delete_detalleblacklist
+ GO
+create procedure delete_detalleblacklist
+  @IdDetalleBlacklist int
+  as
+  begin
     delete
-      from Blacklist
-      WHERE NumBlacklist = @NumBlacklist
+      from DetalleBlacklist
+      where IdDetalleBlacklist = @IdDetalleBlacklist
   end;

@@ -21,7 +21,6 @@ execute insert_grupo '7B', 'Séptimo B';
 execute insert_grupo '7C', 'Séptimo C';
 execute insert_grupo '8A', 'Octavo A';
 execute insert_grupo '8B', 'Octavo B';
-execute insert_grupo '8C', 'Octavo C';
 execute insert_grupo '9A', 'Noveno A';
 execute insert_grupo '9B', 'Noveno B';
 execute insert_grupo '10A', 'Decimo A';
@@ -105,6 +104,13 @@ if exists (select count(*) from Blacklist)
 begin
   delete from Blacklist;
 end;
-execute insert_blacklist 'Sander', Null, 'Braulio', 'Tiro agua sobre un teclado', '2016-04-30', 5;
+execute insert_blacklist 1, 'Sander', 'Tiro agua sobre un teclado', '2016-04-30', 5;
 select * from Blacklist;
 /*----------------------------------------------*/
+, Null, 'Braulio'
+if exists (select count(*) from DetalleBlacklist)
+begin
+  delete from DetalleBlacklist;
+end;
+execute insert_detalleblacklist 1, '11A', 'Braulio', 'Pacheco';
+select * from DetalleBlacklist;
