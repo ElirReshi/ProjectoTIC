@@ -62,6 +62,7 @@ create table DetalleBlacklist (
   IdDetalleBlacklist int identity(1, 1) primary key,
   NumBlacklist int foreign key references Blacklist (NumBlacklist) not null,
   CodGrupo char(5) foreign key references Grupo (CodGrupo) not null,
+  CodTurno char(1) foreign key references Turno (CodTurno) not null,
   Nombre nvarchar(max),
   Apellido nvarchar(max)
 )
@@ -402,12 +403,13 @@ if (OBJECT_ID('insert_detalleblacklist') is not null)
 create procedure insert_detalleblacklist
   @NumBlacklist int,
   @CodGrupo char(5),
+  @CodTurno char(1),
   @Nombre nvarchar(max),
   @Apellido nvarchar(max)
   as
   begin
-    insert into DetalleBlacklist (NumBlacklist, CodGrupo, Nombre, Apellido)
-    values (@NumBlacklist, @CodGrupo, @Nombre, @Apellido);
+    insert into DetalleBlacklist (NumBlacklist, CodGrupo, CodTurno, Nombre, Apellido)
+    values (@NumBlacklist, @CodGrupo, @CodTurno, @Nombre, @Apellido);
   end;
 
 if (OBJECT_ID('update_detalleblacklist') is not null)
@@ -416,6 +418,7 @@ if (OBJECT_ID('update_detalleblacklist') is not null)
 create procedure update_detalleblacklist
   @IdDetalleBlacklist int,
   @CodGrupo char(5),
+  @CodTurno char(1),
   @Nombre nvarchar(max),
   @Apellido nvarchar(max)
   as
@@ -423,6 +426,7 @@ create procedure update_detalleblacklist
     update DetalleBlacklist
     set
       CodGrupo = @CodGrupo,
+      CodTurno = @CodTurno,
       Nombre = @Nombre,
       Apellido = @Apellido
     where IdDetalleBlacklist = @IdDetalleBlacklist
