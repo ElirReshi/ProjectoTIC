@@ -99,3 +99,12 @@ execute insert_maquina 18, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS',
 execute insert_maquina 19, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
 execute insert_maquina 20, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
 select * from Maquina;
+/*----------------------------------------------*/
+-- Blacklist
+if exists (select count(*) from Blacklist)
+begin
+  delete from Blacklist;
+end;
+execute insert_blacklist 'Sander', Null, 'Braulio', 'Tiro agua sobre un teclado', '2016-04-30', 5;
+select * from Blacklist;
+/*----------------------------------------------*/
