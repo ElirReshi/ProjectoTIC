@@ -28,7 +28,22 @@ create table Docente (
   Apellido nvarchar(max),
   Celular int
 )
-
+create table Responsable (
+  CodResponsable char(10) primary key,
+  Cedula nvarchar(16) unique,
+  Nombre nvarchar(Max),
+  Apellido nvarchar(max),
+  Celular int
+)
+create table Maquina (
+  NumMaquina int primary key,
+  Fabricante nvarchar(Max) not null,
+  Modelo nvarchar(Max) not null,
+  CPU nvarchar(Max) not null,
+  RAM int not null, -- GB
+  GPU nvarchar(Max) not null,
+  HDD int not null -- GB
+)
 /*----------------------------------------------*/
 -- Turno
 if (OBJECT_ID('insert_turno') is not null)
@@ -205,3 +220,105 @@ create procedure delete_docente
   end;
 
 /*----------------------------------------------*/
+-- Responsable
+if (OBJECT_ID('insert_responsable') is not null)
+  drop procedure insert_responsable
+ GO
+create procedure insert_responsable
+  @CodResponsable char(10),
+  @Cedula nvarchar(16),
+  @Nombre nvarchar(Max),
+  @Apellido nvarchar(max),
+  @Celular int
+  as
+  begin
+    insert into Responsable (CodResponsable, Cedula, Nombre, Apellido, Celular)
+    values (@CodResponsable, @Cedula, @Nombre, @Apellido, @Celular)
+  end;
+
+if (OBJECT_ID('update_responsable') is not null)
+  drop procedure update_responsable
+ GO
+create procedure update_responsable
+  @CodResponsable char(10),
+  @Cedula nvarchar(16),
+  @Nombre nvarchar(Max),
+  @Apellido nvarchar(max),
+  @Celular int
+  as
+  begin
+    update Responsable
+    set
+      Cedula = @Cedula,
+      Nombre = @Nombre,
+      Apellido = @Apellido,
+      Celular = @Celular
+    where CodResponsable = @CodResponsable
+  end;
+
+if (OBJECT_ID('delete_responsable') is not null)
+  drop procedure delete_responsable
+ GO
+create procedure delete_responsable
+  @CodResponsable char(10)
+  as
+  begin
+    delete
+      from Responsable
+      WHERE CodResponsable = @CodResponsable
+  end;
+
+/*----------------------------------------------*/
+-- Maquina
+if (OBJECT_ID('insert_maquina') is not null)
+  drop procedure insert_maquina
+ GO
+create procedure insert_maquina
+  @NumMaquina int,
+  @Fabricante nvarchar(Max),
+  @Modelo nvarchar(Max),
+  @CPU nvarchar(Max),
+  @RAM int,
+  @GPU nvarchar(Max),
+  @HDD int
+  as
+  begin
+    insert into Maquina (NumMaquina, Fabricante, Modelo, CPU, RAM, GPU, HDD)
+    values (@NumMaquina, @Fabricante, @Modelo, @CPU, @RAM, @GPU, @HDD)
+  end;
+
+if (OBJECT_ID('update_maquina') is not null)
+  drop procedure update_maquina
+ GO
+create procedure update_maquina
+  @NumMaquina int,
+  @Fabricante nvarchar(Max),
+  @Modelo nvarchar(Max),
+  @CPU nvarchar(Max),
+  @RAM int,
+  @GPU nvarchar(Max),
+  @HDD int
+  as
+  begin
+    update Maquina
+    set
+      Fabricante = @Fabricante,
+      Modelo = @Modelo,
+      CPU = @CPU,
+      RAM = @RAM,
+      GPU = @GPU,
+      HDD = @HDD
+    where NumMaquina = @NumMaquina
+  end;
+
+if (OBJECT_ID('delete_maquina') is not null)
+  drop procedure delete_maquina
+ GO
+create procedure delete_maquina
+  @NumMaquina int
+  as
+  begin
+    delete
+      from Maquina
+      WHERE NumMaquina = @NumMaquina
+  end;

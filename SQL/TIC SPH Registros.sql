@@ -28,7 +28,6 @@ execute insert_grupo '10A', 'Decimo A';
 execute insert_grupo '10B', 'Decimo B';
 execute insert_grupo '11A', 'Undécimo A';
 select * from Grupo;
-
 /*----------------------------------------------*/
 -- Asignatura
 if exists (select count(*) from Asignatura)
@@ -64,3 +63,39 @@ execute insert_docente 'Roa', '001-090919-850SF', 'Roa', 'Marquez', 761121085;
 execute insert_docente 'Verónica', '001-010119-920MQ', 'Verónica', 'Lepelm', 877908230;
 execute insert_docente 'Willian', '001-046729-120MQ', 'Willian', 'Sotelo', 842647717;
 select * from Docente;
+/*----------------------------------------------*/
+-- Responsable
+if exists (select count(*) from Responsable)
+begin
+  delete from Responsable;
+end;
+execute insert_responsable 'Sander', '001-070419-8109K', 'Sander Alberto', 'Pacheco', 766557878;
+execute insert_responsable 'Mario', '003-090119-6701L', 'Mario Alberto', 'Pacheco', 899683683;
+select * from Responsable;
+/*----------------------------------------------*/
+-- Maquina
+if exists (select count(*) from Maquina)
+begin
+  delete from Maquina;
+end;
+execute insert_maquina 1, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 2, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 3, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 4, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 5, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 6, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 7, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 8, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 9, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 10, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 11, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 12, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 13, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 14, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 15, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 16, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 17, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 18, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 19, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+execute insert_maquina 20, 'ASRock', 'H61M-DGS', 'I5-3470', 4, 'GeForce 8400GS', 1024;
+select * from Maquina;
