@@ -107,10 +107,10 @@ end;
 execute insert_blacklist 1, 'Sander', 'Tiro agua sobre un teclado', '2016-04-30', 5;
 select * from Blacklist;
 /*----------------------------------------------*/
-, Null, 'Braulio'
+-- DetalleBlacklist
 if exists (select count(*) from DetalleBlacklist)
 begin
   delete from DetalleBlacklist;
 end;
-execute insert_detalleblacklist 1, '11A', 'Braulio', 'Pacheco';
+execute insert_detalleblacklist 1, '11A', 'V', 'Braulio', 'Pacheco';
 select * from DetalleBlacklist;

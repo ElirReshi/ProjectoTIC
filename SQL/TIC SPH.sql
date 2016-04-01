@@ -11,22 +11,22 @@ Use TIC;
 -- Tablas Independientes
 create table Turno (
   CodTurno char(1) primary key,
-  Titulo nvarchar (max) not null,
+  Titulo nvarchar(max) not null,
   HoraEntrada time,
   HoraSalida time
 )
 create table Grupo (
   CodGrupo char(5) primary key,
-  Nombre nvarchar (max)
+  Nombre nvarchar(max)
 )
 create table Asignatura (
   CodAsignatura char(10) primary key,
-  Nombre nvarchar (max)
+  Nombre nvarchar(max)
 )
 create table Docente (
   CodDocente char(10) primary key,
   Cedula nvarchar(16) unique,
-  Nombre nvarchar(Max),
+  Nombre nvarchar(max),
   Apellido nvarchar(max),
   Celular int
 )
@@ -34,17 +34,17 @@ create table Responsable (
   CodResponsable char(10) primary key,
   CodTurno char(1) foreign key references Turno (CodTurno) not null,
   Cedula nvarchar(16) unique,
-  Nombre nvarchar(Max),
+  Nombre nvarchar(max),
   Apellido nvarchar(max),
   Celular int
 )
 create table Maquina (
   NumMaquina int primary key,
-  Fabricante nvarchar(Max) not null,
-  Modelo nvarchar(Max) not null,
-  CPU nvarchar(Max) not null,
+  Fabricante nvarchar(max) not null,
+  Modelo nvarchar(max) not null,
+  CPU nvarchar(max) not null,
   RAM int not null, -- GB
-  GPU nvarchar(Max) not null,
+  GPU nvarchar(max) not null,
   HDD int not null -- GB
 )
 /*----------------------------------------------*/
@@ -66,6 +66,20 @@ create table DetalleBlacklist (
   Nombre nvarchar(max),
   Apellido nvarchar(max)
 )
+create table Examen (
+  NumExamen int primary key,
+  CodResponsable char(10) foreign key references Responsable (CodResponsable),
+  TipoMantenimiento nvarchar(max) not null,
+  Justificacion nvarchar(max) not null,
+  FechaReg date default getdate() not null
+)
+create table DetalleExamen (
+  IdDetalleExamen int identity(1, 1) primary key,
+  NumExamen int foreign key references Examen (NumExamen) not null,
+  NumMaquina int foreign key references Maquina (NumMaquina) not null,
+  Estado nvarchar(max),
+  Desperfecto nvarchar(max)
+)
 /*----------------------------------------------*/
 -- Turno
 if (OBJECT_ID('insert_turno') is not null)
@@ -73,7 +87,7 @@ if (OBJECT_ID('insert_turno') is not null)
  GO
 create procedure insert_turno
   @CodTurno char (1),
-  @Titulo nvarchar (max),
+  @Titulo nvarchar(max),
   @HoraEntrada time,
   @HoraSalida time
   as
@@ -87,7 +101,7 @@ if (OBJECT_ID('update_turno') is not null)
  GO
 create procedure update_turno
   @CodTurno char(1),
-  @Titulo nvarchar (max),
+  @Titulo nvarchar(max),
   @HoraEntrada time,
   @HoraSalida time
   as
@@ -119,7 +133,7 @@ if (OBJECT_ID('insert_grupo') is not null)
  GO
 create procedure insert_grupo
   @CodGrupo char(5),
-  @Nombre nvarchar (max)
+  @Nombre nvarchar(max)
   as
   begin
     insert into Grupo (CodGrupo, Nombre)
@@ -131,7 +145,7 @@ if (OBJECT_ID('update_grupo') is not null)
  GO
 create procedure update_grupo
   @CodGrupo char(5),
-  @Nombre nvarchar (max)
+  @Nombre nvarchar(max)
   as
   begin
     update Grupo
@@ -159,7 +173,7 @@ if (OBJECT_ID('insert_asignatura') is not null)
  GO
 create procedure insert_asignatura
   @CodAsignatura char(5),
-  @Nombre nvarchar (max)
+  @Nombre nvarchar(max)
   as
   begin
     insert into Asignatura (CodAsignatura, Nombre)
@@ -171,7 +185,7 @@ if (OBJECT_ID('update_asignatura') is not null)
  GO
 create procedure update_asignatura
   @CodAsignatura char(5),
-  @Nombre nvarchar (max)
+  @Nombre nvarchar(max)
   as
   begin
     update Asignatura
@@ -200,7 +214,7 @@ if (OBJECT_ID('insert_docente') is not null)
 create procedure insert_docente
   @CodDocente char(10),
   @Cedula nvarchar(16),
-  @Nombre nvarchar(Max),
+  @Nombre nvarchar(max),
   @Apellido nvarchar(max),
   @Celular int
   as
@@ -215,7 +229,7 @@ if (OBJECT_ID('update_docente') is not null)
 create procedure update_docente
   @CodDocente char(10),
   @Cedula nvarchar(16),
-  @Nombre nvarchar(Max),
+  @Nombre nvarchar(max),
   @Apellido nvarchar(max),
   @Celular int
   as
@@ -250,7 +264,7 @@ create procedure insert_responsable
   @CodResponsable char(10),
   @CodTurno char(1),
   @Cedula nvarchar(16),
-  @Nombre nvarchar(Max),
+  @Nombre nvarchar(max),
   @Apellido nvarchar(max),
   @Celular int
   as
@@ -266,7 +280,7 @@ create procedure update_responsable
   @CodResponsable char(10),
   @CodTurno char(1),
   @Cedula nvarchar(16),
-  @Nombre nvarchar(Max),
+  @Nombre nvarchar(max),
   @Apellido nvarchar(max),
   @Celular int
   as
@@ -299,11 +313,11 @@ if (OBJECT_ID('insert_maquina') is not null)
  GO
 create procedure insert_maquina
   @NumMaquina int,
-  @Fabricante nvarchar(Max),
-  @Modelo nvarchar(Max),
-  @CPU nvarchar(Max),
+  @Fabricante nvarchar(max),
+  @Modelo nvarchar(max),
+  @CPU nvarchar(max),
   @RAM int,
-  @GPU nvarchar(Max),
+  @GPU nvarchar(max),
   @HDD int
   as
   begin
@@ -316,11 +330,11 @@ if (OBJECT_ID('update_maquina') is not null)
  GO
 create procedure update_maquina
   @NumMaquina int,
-  @Fabricante nvarchar(Max),
-  @Modelo nvarchar(Max),
-  @CPU nvarchar(Max),
+  @Fabricante nvarchar(max),
+  @Modelo nvarchar(max),
+  @CPU nvarchar(max),
   @RAM int,
-  @GPU nvarchar(Max),
+  @GPU nvarchar(max),
   @HDD int
   as
   begin
